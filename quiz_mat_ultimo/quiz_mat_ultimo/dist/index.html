@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Quizizz - Multiplicação em Situações Concretas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wdth,wght@100,400;100,500;100,700;100,900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div id="overlayHistorico" class="overlay-historico"></div>
+
+  <aside id="historicoLateral" class="historico-lateral">
+    <div class="historico-topo">
+      <h2>Histórico</h2>
+      <button id="btnFecharHistorico" class="btn-fechar" type="button">×</button>
+    </div>
+
+    <h3>Participantes</h3>
+    <ul id="listaHistorico"></ul>
+
+    <h3>Top 5 resultados</h3>
+    <ol id="listaRanking"></ol>
+
+    <button id="btnLimparHistorico" class="btn-limpar" type="button">
+      Limpar histórico
+    </button>
+  </aside>
+
+  <button id="btnHistorico" class="btn-historico" type="button">
+    ☰ Histórico
+  </button>
+
+  <main class="app">
+    <section id="telaInicial" class="tela ativa">
+      <div class="card-inicial">
+        <h1 class="titulo-principal">
+          <span>MATEMÁTICA - MULTIPLICAÇÃO EM</span>
+          <span>SITUAÇÕES CONCRETAS</span>
+        </h1>
+
+        <h2 class="subtitulo-principal">QUIZIZZ DE REVISÃO</h2>
+
+        <div class="caixa-info">
+          <h3>20 QUESTÕES DE MULTIPLICAÇÃO EM SITUAÇÕES CONCRETAS</h3>
+          <p>Serão 4 rodadas com 5 questões cada.</p>
+          <p>As questões e as alternativas serão embaralhadas a cada nova partida.</p>
+        </div>
+
+        <div class="formulario-nome">
+          <label for="nomeJogador">Nome do participante</label>
+
+          <input
+            id="nomeJogador"
+            type="text"
+            placeholder="Digite seu nome com 3 caracteres ou mais"
+            autocomplete="off"
+          />
+
+          <p id="erroNome" class="mensagem-erro"></p>
+
+          <button id="btnComecar" class="btn-acesso" type="button">
+            ACESSAR QUIZIZZ
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="telaQuiz" class="tela">
+      <header class="cabecalho-quiz">
+        <div class="identificacao">
+          <h1>Quizizz</h1>
+          <h2>Multiplicação em situações concretas</h2>
+          <p id="jogadorAtual"></p>
+        </div>
+
+        <div class="painel-status">
+          <div class="status-card">
+            <span>Rodada</span>
+            <strong id="numeroRodada">1/4</strong>
+          </div>
+
+          <div class="status-card">
+            <span>Questão</span>
+            <strong id="numeroQuestao">1/5</strong>
+          </div>
+
+          <div class="status-card">
+            <span>Pontos da rodada</span>
+            <strong id="pontosRodadaTela">0</strong>
+          </div>
+
+          <div class="status-card">
+            <span>Total acumulado</span>
+            <strong id="pontosTotalTela">0</strong>
+          </div>
+
+          <button id="btnSair" class="btn-sair" type="button">Sair</button>
+        </div>
+      </header>
+
+      <section class="quiz-card">
+        <div class="coluna-questao">
+          <p id="pergunta" class="pergunta"></p>
+
+          <div id="alternativas" class="alternativas"></div>
+
+          <button id="btnConfirmar" class="btn-confirmar" type="button" disabled>
+            Confirmar resposta
+          </button>
+
+          <p id="feedback" class="feedback"></p>
+        </div>
+
+        <div class="area-rascunho">
+          <h3>Bloco de notas / rascunho da questão</h3>
+
+          <p>
+            Use este espaço antes ou depois de escolher a alternativa para registrar
+            seus cálculos, ideias, dúvidas ou estratégia de resolução.
+          </p>
+
+          <textarea
+            id="rascunhoQuestao"
+            placeholder="Escreva aqui seu rascunho, cálculo ou justificativa..."
+          ></textarea>
+
+          <button id="btnContinuar" class="btn-continuar oculto" type="button">
+            CONTINUAR
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <section id="telaResultado" class="tela">
+      <div class="card-resultado">
+        <h1 id="tituloResultado" class="titulo-resultado">Rodada concluída</h1>
+        <h2 id="subtituloResultado"></h2>
+
+        <section class="resumo-final">
+          <h2>Resumo organizado</h2>
+
+          <div class="grade-resumo">
+            <div class="resumo-card">
+              <span>Rodada atual</span>
+              <strong id="resumoRodada">1/4</strong>
+            </div>
+
+            <div class="resumo-card">
+              <span>Acertos na rodada</span>
+              <strong id="resumoAcertosRodada">0/5</strong>
+            </div>
+
+            <div class="resumo-card">
+              <span>Pontos da rodada</span>
+              <strong id="resumoPontosRodada">0/100</strong>
+            </div>
+
+            <div class="resumo-card">
+              <span>Total acumulado</span>
+              <strong id="resumoPontosTotal">0/400</strong>
+            </div>
+
+            <div class="resumo-card resumo-largo">
+              <span>Situação</span>
+              <strong id="resumoStatus">Em andamento</strong>
+            </div>
+          </div>
+
+          <p id="mensagemResultado" class="mensagem-organizada"></p>
+        </section>
+
+        <section class="registros-tela">
+          <h2>Questões respondidas</h2>
+
+          <p class="texto-ajuda">
+            Abaixo aparecem as perguntas respondidas, a alternativa marcada,
+            a resposta correta e o rascunho registrado pelo participante.
+          </p>
+
+          <div id="listaRegistrosTela" class="lista-registros"></div>
+        </section>
+
+        <section class="acoes-rodada">
+          <button id="btnProximaRodada" type="button">
+            INICIAR PRÓXIMA RODADA
+          </button>
+
+          <button id="btnBaixarRelatorio" type="button">
+            BAIXAR RELATÓRIO
+          </button>
+
+          <button id="btnReiniciarJogo" type="button">
+            REINICIAR JOGO
+          </button>
+        </section>
+
+        <section class="ranking-final-box">
+          <h2>5 melhores resultados gerais</h2>
+          <ol id="rankingFinal" class="ranking-final"></ol>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
